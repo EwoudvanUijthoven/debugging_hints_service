@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Body
 from app.schemas.hint_request import HintRequest
+from app.handlers.identify_error import identify_error_handler
+from app.handlers.hint_generator.hint_generator_factory import hint_generator_factory
 
 router = APIRouter()
 
@@ -23,6 +25,11 @@ def get_debugging_hint(hint_request: HintRequest):
     output = hint_request.output
     error = hint_request.error
 
-    # Generate the hint based on the input (example logic)
-    hint = f"Received code: {code}. Output: {output}. Error: {error}"
+    # Identify the error
+    error_name = identify_error_handler(error_message=error, code=code)
+
+    # Generate the hint based on the error
+    hint_generator = hint_generator_factory(error_name=error_name, code=code, error=error)
+    hint = hint_generator.generate_hint()
+
     return {"hint_text": hint}
