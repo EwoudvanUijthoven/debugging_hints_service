@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from app.routers import example_router
+from app.routers import api_endpoints
 from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
 
 # Include routers for different endpoints
-app.include_router(example_router.router)
+app.include_router(api_endpoints.router)
 
 app.add_middleware(
     CORSMiddleware,
