@@ -11,4 +11,3 @@ def hint_generator_factory(error_name: str, code: str, error: str) -> HintGenera
     #     return OutOfBoundsHintGenerator()
     else:
         raise NotImplementedError("No hint generator found for this error.")
- 
