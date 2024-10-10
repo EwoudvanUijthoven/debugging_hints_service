@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.schemas.hint_request import HintRequest
-from app.handlers.hint_identifier.identify_error import identify_error_handler
+from app.handlers.error_identifier.identify_error import identify_error_handler
 from app.handlers.hint_generator.hint_generator_factory import hint_generator_factory
 
 router = APIRouter()
