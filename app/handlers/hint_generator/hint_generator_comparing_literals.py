@@ -2,19 +2,7 @@
 import xml.etree.ElementTree as ET
 
 from app.handlers.hint_generator.hint_generator_template import HintGenerator
-
-
-def find_parent_with_type(root, child):
-    for elem in root.iter():
-        for subelem in elem:
-            if subelem == child:
-                # If this element has a 'type' attribute, return it
-                if 'type' in elem.attrib:
-                    return elem
-                else:
-                    # Recursively search up the tree
-                    return find_parent_with_type(root, elem)
-    return None
+from app.handlers.utils.helper_functions import find_parent_with_type
 
 
 class ComparingLiteralsHintGenerator(HintGenerator):
