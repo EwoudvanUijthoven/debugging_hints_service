@@ -8,7 +8,7 @@ from app.handlers.utils.helper_functions import find_parent_with_type
 class OutOfBoundsHintGenerator(HintGenerator):
     """Generates hints for out of bounds / index errors."""
 
-    def generate_hint(self) -> str:
+    def generate_hint(self) -> tuple[str, int]:
         """Generate a hint based on the error."""
         error_info = self.gather_error_info()
         general_hint_message = ("Error: You have a OutOfBounds / Index error in you code. Here is some hints to "
@@ -17,7 +17,7 @@ class OutOfBoundsHintGenerator(HintGenerator):
         transformation_hint_message = self.generate_transformation_hint()
         behavior_hint_message = self.generate_behavior_hint()
         example_hint_message = self.generate_example_hint()
-        return general_hint_message + "\n" + location_hint_message + "\n" + transformation_hint_message + "\n" + behavior_hint_message + "\n" + example_hint_message
+        return general_hint_message + "\n" + location_hint_message + "\n" + transformation_hint_message + "\n" + behavior_hint_message + "\n" + example_hint_message, 200
 
     def gather_error_info(self) -> dict:
         """Gather information about the error."""

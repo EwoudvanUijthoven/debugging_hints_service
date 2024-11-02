@@ -8,7 +8,7 @@ from app.handlers.utils.helper_functions import find_parent_with_type
 class ComparingLiteralsHintGenerator(HintGenerator):
     """Generates hints for comparing literals errors."""
 
-    def generate_hint(self) -> str:
+    def generate_hint(self) -> tuple[str, int]:
         """Generate a hint based on the error."""
         error_info = self.gather_error_info()
         general_hint_message = ("Warning: You are comparing literals in you code. This might be undesired and can cause"
@@ -18,7 +18,7 @@ class ComparingLiteralsHintGenerator(HintGenerator):
         transformation_hint_message = self.generate_transformation_hint()
         behavior_hint_message = self.generate_behavior_hint()
         example_hint_message = self.generate_example_hint()
-        return general_hint_message + "\n" + location_hint_message + "\n" + data_hint_message + "\n" + transformation_hint_message + "\n" + behavior_hint_message + "\n" + example_hint_message
+        return general_hint_message + "\n" + location_hint_message + "\n" + data_hint_message + "\n" + transformation_hint_message + "\n" + behavior_hint_message + "\n" + example_hint_message, 200
 
     def gather_error_info(self) -> dict:
         """Gather information about the error."""
