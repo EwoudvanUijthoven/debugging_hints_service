@@ -1,6 +1,5 @@
 """Identifies an error based on either the error message or the code."""
 from app.handlers.error_identifier.identify_comparing_literals import check_comparing_literals_error
-from app.handlers.error_identifier.identify_type_error import check_type_error
 
 
 def identify_error_handler(error_message: str, code: str, output: str, status: str) -> str:
