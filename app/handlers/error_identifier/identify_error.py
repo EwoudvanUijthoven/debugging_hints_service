@@ -23,6 +23,8 @@ def identify_real_error_handler(error_message: str, code: str, output: str, stat
         return "out_of_bounds_error"
     elif "TypeError" in error_message:
         return "type_error"
+    elif "SyntaxError: duplicate argument 'x' in function definition" in error_message:
+        return "ambiguous_parameter_name"
     elif "AttributeError: 'NoneType' object has no attribute" in error_message:
         return "none_type_error"
     else:

@@ -29,10 +29,9 @@ def get_debugging_hint(hint_request: HintRequest):
     status = hint_request.status
 
     # Identify the error
-    error_name = identify_error_handler(error_message=error, code=code, output=output, status=status)
-
     # Generate the hint based on the error
     try:
+        error_name = identify_error_handler(error_message=error, code=code, output=output, status=status)
         hint_generator = hint_generator_factory(error_name=error_name, code=code, error=error)
         hint, status_code = hint_generator.generate_hint()
     except NotImplementedError:
