@@ -1,5 +1,6 @@
 """Identifies an error based on either the error message or the code."""
 from app.handlers.error_identifier.identify_comparing_literals import check_comparing_literals_error
+from app.handlers.error_identifier.identify_type_error import check_type_error
 
 
 def identify_error_handler(error_message: str, code: str, output: str, status: str) -> str:
@@ -7,7 +8,7 @@ def identify_error_handler(error_message: str, code: str, output: str, status: s
     # If the status is 1, it means the program run unsuccessfully, and we have a real error.
     if status == "1":
         return identify_real_error_handler(error_message, code, output, status)
-    # If the status is 2, it means the program run successfully, there might be an error that is silently skipped.
+    # If the status is 0, it means the program run successfully, there might be an error that is silently skipped.
     elif status == "0":
         return identify_silent_error_handler(error_message, code, output, status)
     # Other status codes should not appear and are not supported.

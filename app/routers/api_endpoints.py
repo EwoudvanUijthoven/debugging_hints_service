@@ -1,4 +1,6 @@
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
+
 from app.schemas.hint_request import HintRequest
 from app.handlers.error_identifier.identify_error import identify_error_handler
 from app.handlers.hint_generator.hint_generator_factory import hint_generator_factory
@@ -30,7 +32,11 @@ def get_debugging_hint(hint_request: HintRequest):
     error_name = identify_error_handler(error_message=error, code=code, output=output, status=status)
 
     # Generate the hint based on the error
-    hint_generator = hint_generator_factory(error_name=error_name, code=code, error=error)
-    hint = hint_generator.generate_hint()
+    try:
+        hint_generator = hint_generator_factory(error_name=error_name, code=code, error=error)
+        hint, status_code = hint_generator.generate_hint()
+    except NotImplementedError:
+        hint = "No generated hints found for this error."
+        status_code = 404
 
-    return {"hint_text": hint}
+    return JSONResponse(content={"hint_text": hint}, status_code=status_code)
