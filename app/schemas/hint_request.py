@@ -6,3 +6,4 @@ class HintRequest(BaseModel):
     output: str
     error: str
     status: str
+    code_language: str

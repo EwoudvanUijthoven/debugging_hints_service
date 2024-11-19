@@ -27,12 +27,16 @@ def get_debugging_hint(hint_request: HintRequest):
     output = hint_request.output
     error = hint_request.error
     status = hint_request.status
+    code_language = hint_request.code_language
+
+    if code_language not in ["Python", "Arduino"]:
+        return JSONResponse(content={"hint_text": "Only Python and Arduino are supported."}, status_code=400)
 
     # Identify the error
     # Generate the hint based on the error
     try:
-        error_name = identify_error_handler(error_message=error, code=code, output=output, status=status)
-        hint_generator = hint_generator_factory(error_name=error_name, code=code, error=error)
+        error_name = identify_error_handler(error_message=error, code=code, output=output, status=status, code_language=code_language)
+        hint_generator = hint_generator_factory(error_name=error_name, code=code, error=error, code_language=code_language)
         hint, status_code = hint_generator.generate_hint()
     except NotImplementedError:
         hint = "No generated hints found for this error."
