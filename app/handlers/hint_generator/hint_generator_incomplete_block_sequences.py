@@ -2,7 +2,6 @@
 import xml.etree.ElementTree as ET
 
 from app.handlers.hint_generator.hint_generator_template import HintGenerator
-from app.handlers.utils.helper_functions import find_parent_with_type
 
 
 class IncompleteBlockSequencesGenerator(HintGenerator):
