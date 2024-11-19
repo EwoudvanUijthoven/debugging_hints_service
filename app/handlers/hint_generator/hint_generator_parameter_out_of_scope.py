@@ -10,7 +10,7 @@ class ParameterOutOfScopeHintGenerator(HintGenerator):
     def generate_hint(self) -> tuple[str, int]:
         """Generate a hint based on the error."""
         error_info = self.gather_error_info()
-        general_hint_message = ("Warning: You are using parameters out of scope in you code. This might be undesired "
+        general_hint_message = ("Warning: You are using parameters out of scope in your code. This might be undesired "
                                 "and can cause your code to behave wrongly. Here is some hints to resolve the "
                                 "potential issue:\n")
         location_hint_message = self.generate_location_hint(error_info=error_info)
