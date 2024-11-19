@@ -22,9 +22,14 @@ class ZeroDivisionHintGenerator(HintGenerator):
         error_info = {
             "error_statement": None,
         }
-        error_lines = self.error.strip().split("\n")
-        error_variables = error_lines[-2].strip()
-        error_info["error_statement"] = error_variables
+        if self.code_language == "Python":
+            error_lines = self.error.strip().split("\n")
+            error_variables = error_lines[-2].strip()
+            error_info["error_statement"] = error_variables
+        elif self.code_language == "Arduino":
+            error_lines = self.error.strip().split("\n")
+            error_variables = error_lines[-3].strip().replace(";", "")
+            error_info["error_statement"] = error_variables
         return error_info
 
     @staticmethod

@@ -10,23 +10,23 @@ from app.handlers.hint_generator.hint_generator_parameter_out_of_scope import Pa
 from app.handlers.hint_generator.hint_generator_none_type_error import NoneTypeHintGenerator
 
 
-def hint_generator_factory(error_name: str, code: str, error: str) -> HintGenerator:
+def hint_generator_factory(error_name: str, code: str, error: str, code_language: str) -> HintGenerator:
     """Factory method to generate the class based on the error_name."""
     if error_name == "zero_division_error":
-        return ZeroDivisionHintGenerator(code=code, error=error)
+        return ZeroDivisionHintGenerator(code=code, error=error, code_language=code_language)
     elif error_name == "comparing_literals_error":
-        return ComparingLiteralsHintGenerator(code=code, error=error)
+        return ComparingLiteralsHintGenerator(code=code, error=error, code_language=code_language)
     elif error_name == "out_of_bounds_error":
-        return OutOfBoundsHintGenerator(code=code, error=error)
+        return OutOfBoundsHintGenerator(code=code, error=error, code_language=code_language)
     elif error_name == "type_error":
-        return TypeErrorHintGenerator(code=code, error=error)
+        return TypeErrorHintGenerator(code=code, error=error, code_language=code_language)
     elif error_name == "ambiguous_parameter_name":
-        return AmbiguousParameterNameHintGenerator(code=code, error=error)
+        return AmbiguousParameterNameHintGenerator(code=code, error=error, code_language=code_language)
     elif error_name == "incomplete_block_sequences_error":
-        return IncompleteBlockSequencesGenerator(code=code, error=error)
+        return IncompleteBlockSequencesGenerator(code=code, error=error, code_language=code_language)
     elif error_name == "parameter_out_of_scope_error":
-        return ParameterOutOfScopeHintGenerator(code=code, error=error)
+        return ParameterOutOfScopeHintGenerator(code=code, error=error, code_language=code_language)
     elif error_name == "none_type_error":
-        return NoneTypeHintGenerator(code=code, error=error)
+        return NoneTypeHintGenerator(code=code, error=error, code_language=code_language)
     else:
         raise NotImplementedError("No hint generator found for this error.")
