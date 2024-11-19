@@ -1,5 +1,6 @@
 """Identifies an error based on either the error message or the code."""
 from app.handlers.error_identifier.identify_comparing_literals import check_comparing_literals_error
+from app.handlers.error_identifier.identify_incomplete_block_sequences import check_incomplete_block_sequences_error
 
 
 def identify_error_handler(error_message: str, code: str, output: str, status: str) -> str:
@@ -35,5 +36,7 @@ def identify_silent_error_handler(error_message: str, code: str, output: str, st
     """Function to identify which error and return a unique error name."""
     if check_comparing_literals_error(code):
         return "comparing_literals_error"
+    elif check_incomplete_block_sequences_error(code):
+        return "incomplete_block_sequences_error"
     else:
         raise NotImplementedError("No handled silent error could be found!")
