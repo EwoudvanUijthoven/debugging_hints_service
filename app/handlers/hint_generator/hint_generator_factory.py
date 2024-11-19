@@ -6,6 +6,7 @@ from app.handlers.hint_generator.hint_generator_out_of_bounds import OutOfBounds
 from app.handlers.hint_generator.hint_generator_type_error import TypeErrorHintGenerator
 from app.handlers.hint_generator.hint_generator_ambiguous_parameter_name import AmbiguousParameterNameHintGenerator
 from app.handlers.hint_generator.hint_generator_incomplete_block_sequences import IncompleteBlockSequencesGenerator
+from app.handlers.hint_generator.hint_generator_parameter_out_of_scope import ParameterOutOfScopeHintGenerator
 
 
 def hint_generator_factory(error_name: str, code: str, error: str) -> HintGenerator:
@@ -22,5 +23,7 @@ def hint_generator_factory(error_name: str, code: str, error: str) -> HintGenera
         return AmbiguousParameterNameHintGenerator(code=code, error=error)
     elif error_name == "incomplete_block_sequences_error":
         return IncompleteBlockSequencesGenerator(code=code, error=error)
+    elif error_name == "parameter_out_of_scope_error":
+        return ParameterOutOfScopeHintGenerator(code=code, error=error)
     else:
         raise NotImplementedError("No hint generator found for this error.")
