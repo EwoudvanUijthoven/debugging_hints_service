@@ -51,12 +51,12 @@ class AmbiguousParameterNameHintGenerator(HintGenerator):
     @staticmethod
     def generate_transformation_hint() -> str:
         """Generate a transformation hint based on the error."""
-        return "Transformation hint: You should rename the ambiguous parameter names in the function definition.\n"
+        return "You should rename the ambiguous parameter names in the function definition.\n"
 
     @staticmethod
     def generate_behavior_hint() -> str:
         """Generate a behavior hint based on the error."""
-        return ("Behavior hint: Using ambiguous parameter names can lead to unexpected behavior in your functions. "
+        return ("Using ambiguous parameter names can lead to unexpected behavior in your functions. "
                 "Ensure that each parameter name is unique to avoid confusion and potential bugs.\n")
 
     @staticmethod
@@ -64,7 +64,7 @@ class AmbiguousParameterNameHintGenerator(HintGenerator):
         """Generate a data hint based on the error."""
         function_name = error_info.get("function_name")
         ambiguous_parameter_name = error_info.get("ambiguous_parameter_names")
-        return (f"Data hint: The function '{function_name}' has ambiguous parameter names. The parameter name "
+        return (f"The function '{function_name}' has ambiguous parameter names. The parameter name "
                 f"'{ambiguous_parameter_name}' is used more than once. Ensure that each parameter name is unique.\n")
 
     @staticmethod
@@ -73,12 +73,12 @@ class AmbiguousParameterNameHintGenerator(HintGenerator):
         function_name = error_info.get("function_name")
         ambiguous_parameter_name = error_info.get("ambiguous_parameter_names")
         return (
-            f"Location hint: The function '{function_name}' has an ambiguous parameter name '{ambiguous_parameter_name}'. "
+            f"The function '{function_name}' has an ambiguous parameter name '{ambiguous_parameter_name}'. "
             "Check the function definition and ensure that each parameter name is unique.\n")
 
     @staticmethod
     def generate_example_hint() -> str:
         """Generate an example hint based on the error."""
         return (
-            "Example hint: If you have a function with ambiguous parameter names, rename the parameters to be unique. "
+            "If you have a function with ambiguous parameter names, rename the parameters to be unique. "
             "For example, instead of `def my_function(a, a):`, use `def my_function(a, b):`.\n")

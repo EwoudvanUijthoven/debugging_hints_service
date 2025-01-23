@@ -35,7 +35,7 @@ class ZeroDivisionHintGenerator(HintGenerator):
     @staticmethod
     def generate_transformation_hint() -> str:
         """Generate a transformation hint based on the error."""
-        return ("Transformation hint: You should transform the division operation such that no division by zero can "
+        return ("You should transform the division operation such that no division by zero can "
                 "happen. Sometimes a variable is used in a division operation and the variable is changed such that "
                 "it equals 0 in some runs.\n"
         )
@@ -43,7 +43,7 @@ class ZeroDivisionHintGenerator(HintGenerator):
     @staticmethod
     def generate_behavior_hint() -> str:
         """Generate a behavior hint based on the error."""
-        return ("Behavior hint: Think about your code and division operation. When then program is running, "
+        return ("Think about your code and division operation. When then program is running, "
                 "can the denominator be 0 in the division operation?\n")
 
     @staticmethod
@@ -58,14 +58,14 @@ class ZeroDivisionHintGenerator(HintGenerator):
         else:
             parent = None
         if parent:
-            return f"Location hint: The possible issue is in block '{parent}' and with operation '{error_info['error_statement']}'.\n"
+            return f"The possible issue is in block '{parent}' and with operation '{error_info['error_statement']}'.\n"
         else:
-            return f"Location hint: The possible issue is with operation '{error_info['error_statement']}'.\n"
+            return f"The possible issue is with operation '{error_info['error_statement']}'.\n"
 
     @staticmethod
     def generate_example_hint() -> str:
         """Generate an example hint based on the error."""
-        return ("Example hint: When making a division operation, you cannot divide by 0. Make sure the variable which "
+        return ("When making a division operation, you cannot divide by 0. Make sure the variable which "
                 "you are dividing by is not equal to 0. You can put a check in place to make sure x is never 0 when a "
                 "division variable is equal to 0. For example:\nx = 0 \nif (x == "
                 "0):\n\tx = 1\n print(10 / x) \n")

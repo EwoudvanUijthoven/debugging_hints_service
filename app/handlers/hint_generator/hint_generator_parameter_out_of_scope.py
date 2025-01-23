@@ -53,18 +53,18 @@ class ParameterOutOfScopeHintGenerator(HintGenerator):
         """Generate a transformation hint based on the error."""
         return ("To fix this issue, you need to ensure that the parameter is only used within the scope of the "
                 "function. Find the usages of the parameter outside of the scope of the function and make sure they "
-                "are removed or replaced with a different variable.")
+                "are removed or replaced with a different variable.\n")
 
     @staticmethod
     def generate_behavior_hint() -> str:
         """Generate a behavior hint based on the error."""
         return ("Function parameters are supposed to be used only within the scope of the function. Using them "
                 "outside of the function can lead to unexpected behavior in your code. Ensure that each parameter is "
-                "used only within the function definition to avoid confusion and potential bugs.")
+                "used only within the function definition to avoid confusion and potential bugs.\n")
 
     @staticmethod
     def generate_location_hint(error_info: dict) -> str:
         """Generate a location hint based on the error."""
         return (f"The parameter '{error_info.get('parameter_name')}' is used outside of the function "
                 f"'{error_info.get('function_name')}'. Make sure to use the parameter only within the function "
-                f"definition.")
+                f"definition.\n")

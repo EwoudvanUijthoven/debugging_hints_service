@@ -56,13 +56,13 @@ class TypeErrorHintGenerator(HintGenerator):
     @staticmethod
     def generate_transformation_hint() -> str:
         """Generate a transformation hint based on the error."""
-        return ("Transformation hint: You should transform the code such that the types of the variables being "
+        return ("You should transform the code such that the types of the variables being "
                 "compared are equal.\n")
 
     @staticmethod
     def generate_behavior_hint() -> str:
         """Generate a behavior hint based on the error."""
-        return ("Behavior hint: Think about your code and the types of the variables being compared. When applying "
+        return ("Think about your code and the types of the variables being compared. When applying "
                 "operations on multiple variables they should have the same type.\n")
 
     @staticmethod
@@ -73,7 +73,7 @@ class TypeErrorHintGenerator(HintGenerator):
         a_value = error_info.get("a_value")
         b_value = error_info.get("b_value")
         return (
-            f"Data hint: The variable '{a_value}' is of type '{a_type}', while the variable '{b_value}' is of type "
+            f"The variable '{a_value}' is of type '{a_type}', while the variable '{b_value}' is of type "
             f"'{b_type}'. Ensure that both variables are of the same type before performing operations on them.\n")
 
     @staticmethod
@@ -81,11 +81,11 @@ class TypeErrorHintGenerator(HintGenerator):
         """Generate a location hint based on the error."""
         a_value = error_info.get("a_value")
         b_value = error_info.get("b_value")
-        return (f"Location hint: The type error occurred when trying to perform an operation between '{a_value}' "
+        return (f"The type error occurred when trying to perform an operation between '{a_value}' "
                 f"and '{b_value}'. Check the location in your code where these variables are used together.\n")
 
     @staticmethod
     def generate_example_hint() -> str:
         """Generate an example hint based on the error."""
-        return ("Example hint: If you are trying to add an integer and a string, you should convert the string to an "
+        return ("If you are trying to add an integer and a string, you should convert the string to an "
                 "integer first. For example, instead of `result = 5 + '10'`, use `result = 5 + int('10')`.\n")
