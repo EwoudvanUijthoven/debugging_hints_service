@@ -54,14 +54,14 @@ class IncompleteBlockSequencesGenerator(HintGenerator):
     @staticmethod
     def generate_transformation_hint() -> str:
         """Generate a transformation hint based on the error."""
-        return "To fix this issue, you need to ensure that the block is complete by filling all empty fields."
+        return "To fix this issue, you need to ensure that the block is complete by filling all empty fields.\n"
 
     @staticmethod
     def generate_behavior_hint() -> str:
         """Generate a behavior hint based on the error."""
         return ("Incomplete block sequences can cause your code to behave unexpectedly. Not filling in all empty "
                 "fields makes a block incomplete. If do blocks should do an action based on a condition. If do else "
-                "do blocks should do an action based on a condition and another action if the condition is false.")
+                "do blocks should do an action based on a condition and another action if the condition is false.\n")
 
     @staticmethod
     def generate_location_hint(error_info: dict) -> str:
@@ -72,7 +72,7 @@ class IncompleteBlockSequencesGenerator(HintGenerator):
         }
         block = block_mapping[error_info["block_type"]] if error_info["block_type"] in block_mapping else None
         return (f"This issue was found in an \"{block}\" block. Check those blocks and find the one where the "
-                f"if condition is missing.")
+                f"if condition is missing.\n")
 
     @staticmethod
     def generate_example_hint() -> str:
@@ -80,4 +80,4 @@ class IncompleteBlockSequencesGenerator(HintGenerator):
         return ("For example, if you have an if do block, you should have a condition in the block to determine if "
                 "the action should be executed or not. If you have an if do else do block, you should have a condition"
                 "and an action to execute if the condition is false. This condition should be in the first field of "
-                "the block and can be any logical comparison or boolean value.")
+                "the block and can be any logical comparison or boolean value.\n")

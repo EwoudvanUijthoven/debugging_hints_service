@@ -32,14 +32,14 @@ class OutOfBoundsHintGenerator(HintGenerator):
     @staticmethod
     def generate_transformation_hint() -> str:
         """Generate a transformation hint based on the error."""
-        return ("Transformation hint: You should transform the code such that when an index of a list or a string "
+        return ("You should transform the code such that when an index of a list or a string "
                 "value is trying to be accessed, it is always available.\n"
                 )
 
     @staticmethod
     def generate_behavior_hint() -> str:
         """Generate a behavior hint based on the error."""
-        return ("Behavior hint: Think about your code and accessing indexes. When then program is running, "
+        return ("Think about your code and accessing indexes. When then program is running, "
                 "is it trying to access indexes that do not exist?\n")
 
     @staticmethod
@@ -54,14 +54,14 @@ class OutOfBoundsHintGenerator(HintGenerator):
         else:
             parent = None
         if parent:
-            return f"Location hint: The possible issue is in block '{parent}' and with operation '{error_info['error_statement']}'.\n"
+            return f"The possible issue is in block '{parent}' and with operation '{error_info['error_statement']}'.\n"
         else:
-            return f"Location hint: The possible issue is with operation '{error_info['error_statement']}'.\n"
+            return f"The possible issue is with operation '{error_info['error_statement']}'.\n"
 
     @staticmethod
     def generate_example_hint() -> str:
         """Generate an example hint based on the error."""
-        return ("Example hint: When accessing an index, you cannot access an index that does not exist. You can put a "
+        return ("When accessing an index, you cannot access an index that does not exist. You can put a "
                 "check in place to make sure the index exists before accessing it. For example:\nx = 'Hello World!' "
                 "\nif len(x) > 7:\n\tprint(x[7])\nelse:\n\tprint('The index you are trying to access does not "
                 "exist!')\n")

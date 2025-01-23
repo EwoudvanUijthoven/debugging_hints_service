@@ -62,19 +62,19 @@ class ComparingLiteralsHintGenerator(HintGenerator):
     @staticmethod
     def generate_transformation_hint() -> str:
         """Generate a transformation hint based on the error."""
-        return ("Transformation hint: You should transform at least one of the literals into a variable before "
+        return ("You should transform at least one of the literals into a variable before "
                 "comparing them.\n")
 
     @staticmethod
     def generate_behavior_hint() -> str:
         """Generate a behavior hint based on the error."""
-        return ("Behavior hint: Think about your code and comparison. Are you comparing the right values? Currently "
+        return ("Think about your code and comparison. Are you comparing the right values? Currently "
                 "the outcome of the comparison is the same every time the program runs.\n")
 
     @staticmethod
     def generate_data_hint(error_info: dict) -> str:
         """Generate a location hint based on the error."""
-        return (f"Data hint: You are comparing {error_info['a_type']} '{error_info['a_value']}' with "
+        return (f"You are comparing {error_info['a_type']} '{error_info['a_value']}' with "
                 f"{error_info['b_type']} '{error_info['b_value']}'. We are expecting variables for comparison.\n")
 
     @staticmethod
@@ -97,14 +97,14 @@ class ComparingLiteralsHintGenerator(HintGenerator):
         }
         parent_block = parent_mapping[error_info["parent_block"]] if error_info["parent_block"] in parent_mapping else None
         if parent_block:
-            return (f"Location hint: The possible issue is in block '{parent_block}' and with comparison "
+            return (f"The possible issue is in block '{parent_block}' and with comparison "
                     f"'{error_info['a_value']} {operator} {error_info['b_value']}'.\n")
         else:
-            return (f"Location hint: The possible issue is with comparison '{error_info['a_value']} "
+            return (f"The possible issue is with comparison '{error_info['a_value']} "
                     f"{operator} {error_info['b_value']}'.\n")
 
     @staticmethod
     def generate_example_hint() -> str:
         """Generate an example hint based on the error."""
-        return ("Example hint: When making a comparison, you usually want to compare variables. For example, "
+        return ("When making a comparison, you usually want to compare variables. For example, "
                 "if you have a variable x with value 'test', you want to check x = 'test' instead of 'test' = 'test'.\n")
